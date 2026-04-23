@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.uv/
+utility_logging_example.log
+.DS_Store
+db/
+*.sqlite3
+.python-version
+uv.lock
