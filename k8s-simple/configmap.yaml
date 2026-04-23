@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yt-config
+  namespace: yt-platform
+data:
+  BACKEND_URL: "http://backend-service:8080"
+  REDIS_URL: "redis://redis-service:6379"
+  QDRANT_URL: "http://qdrant-service:6333"
