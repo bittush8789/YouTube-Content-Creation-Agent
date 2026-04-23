@@ -199,9 +199,5 @@ def main():
     st.markdown("<hr>", unsafe_allow_html=True)
     st.caption("Made with 💖 by Bittu Sharma")
 
-
-
-
-
 if __name__ == "__main__":
     main()
