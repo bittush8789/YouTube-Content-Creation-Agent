@@ -1,191 +1,146 @@
-# YouTube Content Creation Agent
+# 🌐 YouTube Content Creation StoryForge Agent
 
-[![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![UV](https://img.shields.io/badge/package%20manager-uv-orange.svg)](https://github.com/astral-sh/uv)
+[![Python Version](https://img.shields.io/badge/python-3.13+-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-44CC11.svg?style=flat)](LICENSE)
+[![Docker](https://img.shields.io/badge/docker-container-2496ED.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Kubernetes](https://img.shields.io/badge/kubernetes-orchestration-326CE5.svg?style=flat&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![GitHub Actions](https://img.shields.io/badge/ci/cd-github%20actions-2088FF.svg?style=flat&logo=github-actions&logoColor=white)](https://github.com/features/actions)
 
-An intelligent AI-powered agent for creating YouTube video content, including script generation, real-time information retrieval, and content optimization using advanced language models and web search capabilities.
+**StoryForge Agent** is a production-grade, AI-powered platform designed for video creators. It automates the entire research and scripting workflow—transforming raw topics into high-impact scripts for YouTube Shorts, Reels, and Instagram in seconds.
 
-## 🌟 Features
+---
 
-- **Real-time Information Retrieval**: Integrates with Tavily API for up-to-date web search and data gathering
-- **AI-Powered Script Generation**: Uses Google's Gemini 2.0 Flash model for high-quality video script creation
-- **Multiple Interface Options**: 
-  - MCP (Model Context Protocol) server for integration with AI assistants
-  - Flask web application for web-based interaction
-  - Streamlit demo app for quick testing
-- **Modular Architecture**: Clean separation of concerns with utility modules for logging, validation, and memory management
-- **Fast Setup**: Optional UV package manager for lightning-fast dependency installation
+## 🚀 Key Features
+
+- **🔍 Real-Time Research Engine**: Integrated with **Tavily Search API** for up-to-the-minute web data.
+- **🧠 AI Summarization**: Leverages **Google Gemini 2.0 Flash** to distill complex research into concise insights.
+- **🎬 Professional Scriptwriting**: Automatically generates high-conversion short-form video scripts.
+- **🌐 Multi-Interface Ecosystem**:
+  - **Interactive Dashboard**: Modern Streamlit UI with Glassmorphism design.
+  - **REST API**: Flask-based backend for custom integrations.
+  - **MCP Server**: Model Context Protocol support for AI assistant integration.
+- **🛡️ Enterprise Grade**: Built-in DevSecOps, Monitoring, and Kubernetes readiness.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Tools & Technologies |
+| :--- | :--- |
+| **Core AI** | Google Gemini 2.0 Flash, Tavily Search API |
+| **Backend** | Python 3.13, Flask, Pydantic |
+| **Frontend** | Streamlit, Custom CSS (Glassmorphism) |
+| **DevOps** | Docker, Kubernetes (KIND & EKS), Helm |
+| **DevSecOps** | Trivy (Image Scan), Semgrep (Code Scan) |
+| **LLMOps** | Mem0, Chroma DB, Prompt Versioning |
+| **Monitoring** | Prometheus, Grafana |
+
+---
 
 ## 🏗️ Architecture Overview
 
-![Project Architecture](Assets/3242%20(1).png)
+The system follows a modular micro-service architecture:
 
-The system consists of multiple components working together to generate YouTube content:
+1.  **Frontend (Streamlit)**: User interaction and visualization.
+2.  **API Gateway (Flask)**: Orchestrates requests between AI and data modules.
+3.  **AI Engine**: Handles prompt engineering and LLM orchestration.
+4.  **Vector DB (Chroma)**: Manages context and memory for improved response relevance.
 
-- **MCP Server**: Provides tools for AI assistants to interact with the content creation pipeline
-- **Flask Web App**: User-friendly web interface for content generation
-- **Streamlit Demo**: Quick demonstration interface
-- **Core Logic**: Handles information retrieval and script generation
-- **Utilities**: Supporting modules for validation, logging, and memory management
+---
 
-## 📋 Prerequisites
+## 🚀 Getting Started
 
-- Python 3.13 or higher
-- API Keys for:
-  - Google Generative AI (Gemini)
-  - Tavily (Web search)
+### 1. Prerequisites
+- Python 3.13+
+- Docker Desktop (for containerized run)
+- [Google AI Studio Key](https://aistudio.google.com/)
+- [Tavily API Key](https://tavily.com/)
 
-## 🚀 Installation
-
-### Option 1: Standard Installation (Recommended)
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd youtube-content-creation-agent
-   ```
-
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Option 2: UV Package Manager (Faster Setup)
-
-For a much faster installation experience, use the [UV package manager](https://github.com/astral-sh/uv):
-
-1. **Install UV** (if not already installed)
-   ```bash
-   # On Windows
-   winget install astral-sh.uv
-   # Or using pip
-   pip install uv
-   ```
-
-2. **Clone and setup**
-   ```bash
-   git clone <repository-url>
-   cd youtube-content-creation-agent
-   uv sync
-   ```
-
-## ⚙️ Configuration
-
-Create a `.env` file in the root directory with your API keys:
-
+### 2. Environment Setup
+Create a `.env` file in the root directory:
 ```env
-GEMINI_API_KEY=your_google_generative_ai_api_key
-TAVILY_API_KEY=your_tavily_api_key
+GEMINI_API_KEY=your_key_here
+TAVILY_API_KEY=your_key_here
 ```
 
-## 🎯 Usage
-
-### MCP Server Mode
-
-Run as an MCP server for integration with AI assistants:
-
+### 3. Local Installation (via UV)
 ```bash
-# Using UV
-uv run mcp dev mcp_server.py
+# Install UV package manager
+pip install uv
 
-# Or with standard Python
-python mcp_server.py
+# Sync dependencies
+uv sync
+
+# Run the app
+uv run streamlit run frontend/app.py
 ```
 
-### Flask Web Application
-
-Launch the web interface:
-
+### 4. Docker Deployment
 ```bash
-# Using UV
-uv run python flask_app.py
-
-# Or with standard Python
-python flask_app.py
+# Start all services (App, Redis, Qdrant)
+docker-compose up -d
 ```
 
-Open your browser to `http://localhost:5000` to access the web app.
+---
 
-### Streamlit Demo
+## ☸️ Kubernetes Deployment
 
-Run the interactive demo:
-
+### KIND (Local Cluster)
 ```bash
-# Using UV
-uv run streamlit run demo.py
+# Create cluster
+kind create cluster --name yt-platform
 
-# Or with standard Python
-streamlit run demo.py
+# Deploy all manifests
+cd k8s-simple
+./deploy-all.sh
 ```
 
-## 📁 Project Structure
+### AWS EKS (Production)
+```bash
+# Create EKS cluster
+eksctl create cluster --name yt-platform --region ap-south-1 --nodes 2
 
-```
-youtube-content-creation-agent/
-├── app.py                 # Core application logic
-├── flask_app.py           # Flask web application
-├── demo.py                # Streamlit demo interface
-├── mcp_server.py         # MCP server implementation
-├── main.py                # Main entry point
-├── pyproject.toml         # Project configuration
-├── requirements.txt       # Python dependencies
-├── README.md              # Project documentation
-├── Assets/                # Project assets and screenshots
-│   └── 3242 (1).png      # Architecture diagram
-├── all-utils/             # Utility modules
-│   ├── main.py
-│   ├── requirements.txt
-│   ├── db/               # Database files
-│   └── utilities/        # Utility scripts and notebooks
-│       ├── pydantic_models.py
-│       ├── query_validation_transformation.py
-│       ├── logging_example.py
-│       └── mem0_example.py
-└── docs/                 # Documentation (see docs/ folder)
+# Apply manifests
+kubectl apply -f k8s-simple/
 ```
 
-## 📚 Documentation
+---
 
-Detailed documentation is available in the [`docs/`](docs/) folder:
+## 🛡️ DevSecOps & CI/CD
 
-- [Installation Guide](docs/installation.md)
-- [Usage Examples](docs/usage.md)
-- [API Reference](docs/api.md)
-- [Contributing](docs/contributing.md)
+This project implements a complete security and deployment pipeline via **GitHub Actions**:
 
-## 🔄 Workflows
+- **Linting**: Code quality checks.
+- **Security Scan**: **Trivy** scans Docker images for vulnerabilities.
+- **Static Analysis**: **Semgrep** scans Python code for security bugs.
+- **Automated Deployment**: Validates manifests in a KIND cluster on every push.
 
-Visual workflow diagrams for all components are available in the [`workflows/`](workflows/) folder.
+---
+
+## 📊 Monitoring & Observability
+
+Standard enterprise monitoring is provided via Prometheus and Grafana:
+- **Metrics**: API latency, Token usage, Pod health, and Error rates.
+- **Dashboards**: Pre-configured Grafana boards for visual tracking.
+
+---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! Please see our [Contributing Guide](docs/contributing.md) for details on our code of conduct and the process for submitting pull requests.
+
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+---
 
-- Google Generative AI for the Gemini model
-- Tavily for web search capabilities
-- Streamlit and Flask for UI frameworks
-- MCP for the Model Context Protocol
+## 📞 Support & Author
 
-## 📞 Support
-
-If you encounter any issues or have questions, please open an issue on GitHub.
+Developed with Passion for Creators by **Bittu Sharma**.
+For support, please open an issue or contact the maintainer directly.
 
 ---
-*Developed with 💖 by **Bittu Sharma***
+*Powered by Google Gemini & Tavily Search.*
